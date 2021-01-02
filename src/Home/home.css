@@ -28,7 +28,7 @@
     background-color: #fff3f3;
     border-radius: 10px;
     padding: 8px;
-    margin-top: 2rem;
+    margin-top: 4rem;
 }
 
 .subcontent ul {
@@ -43,9 +43,74 @@
     align-items: center;
     justify-content: center;
     font-weight: 500;
+    transition: all ease 0.3s;
+    border-bottom: 1px solid #fff3f3;
+    padding: 4px;
 }
 
 .subcontent ul li i {
     font-size: 2rem;
     margin-right: 0.6rem;
+}
+
+.subcontent ul li:hover {
+    border-bottom: 4px solid #7a1818;
+}
+
+.content {
+    position: relative;
+    height: 60vh;
+    width: 100%;
+    background-color: #fbfbfb;
+}
+
+.info-cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 8px solid #972222;
+    border-bottom: 1px solid #d6cdcd;
+    border-radius: 5px;
+    margin-top: 4rem;
+    padding: 10px;
+    width: 25%;
+    background-color: #fff;
+    z-index: 100;
+}
+
+.card .head {
+    display: flex;
+    align-items: center;
+}
+
+.card i {
+    font-size: 2rem;
+    display: flex;
+    padding-right: 10px;
+}
+
+.card h2 {
+    padding: 8px 0;
+    letter-spacing: 1.2px;
+    color: #222020;
+}
+
+.card p {
+    text-align: center;
+    line-height: 20px;
+    letter-spacing: 0.8px;
+    padding: 8px;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
