@@ -9,18 +9,27 @@ export default function List() {
     const [pokemonList, setPokemonList] = useState([])
 
     useEffect(() => {
-        async function fetchData() {
-            const res = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=649`).then(res => res.json());
-            console.log(res);
-            setPokemonList(res.results);
+
+        const fetchPokemon = () => {
+            const getPokemon = id => `https://pokeapi.co/api/v2/pokemon/${id}`
+
+            const pokemonInfo = []
+
+            for(let i = 1; i < 650; i++) {
+                pokemonInfo.push(fetch(getPokemon(i)).then(response => response.json()))
+            } 
+
+            Promise.all(pokemonInfo).then(pokemon => {
+                setPokemonList(pokemon)
+            })
         }
-        fetchData();
+
+        fetchPokemon();
         
     }, [])
 
     console.log(pokemonList)
 
-    // console.log(pokemonList[2].url.substring(34,36))
 
     const style = {
         color: "#f2f2f2",
@@ -30,10 +39,15 @@ export default function List() {
     return (
         <div className="pokemonList">
             {pokemonList.map(pokemon => (
-                <div key={pokemon.url} className="pokemonInfo">
-                    <h1>{pokemon.name}</h1>
+                <div key={pokemon.id} className="pokemonInfo">
+                    <div className="pokemonInfo-show">
+                        <h1>{pokemon.name}</h1>
+                        <div className="pokemon-sprite">
+                            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}/>
+                        </div>
+                    </div>
                     <div className="links">
-                        <Link style={style} to={`/details/${pokemon.url.substring(34,38)}`}>
+                        <Link style={style} to={`/details/${pokemon.id}`}>
                            Acesse a pokedex
                         </Link> 
                     </div>
